@@ -15,11 +15,15 @@ def find_duplicate(halves: tuple[str, str]) -> str:
             return char
 
 
-score = {char: i + 1 for i, char in enumerate(string.ascii_letters)}
+SCORE = {char: i + 1 for i, char in enumerate(string.ascii_letters)}
 
+# Load Data
 raw = open("contents.txt").read()
 rucksacks = [halves(item) for item in raw.split("\n")]
+
+# Find Duplicates
 duplicates = [find_duplicate(rucksack) for rucksack in rucksacks]
 
-total_score = sum([score[char] for char in duplicates])
+# Add Scores
+total_score = sum([SCORE[char] for char in duplicates])
 print(f"Total Score: {total_score}")

@@ -15,12 +15,18 @@ def group_rucksacks(rucksacks: list[str]) -> list[list[set[str]]]:
     return groups
 
 
-score = {char: i + 1 for i, char in enumerate(string.ascii_letters)}
+SCORE = {char: i + 1 for i, char in enumerate(string.ascii_letters)}
 
+# Load Data
 raw = open("contents.txt").read()
 rucksacks = raw.split("\n")
+
+# Separate Groups
 groups = group_rucksacks(rucksacks)
+
+# Find Badges
 badges = [find_badge(group) for group in groups]
 
-total_score = sum([score[char] for char in badges])
+# Add Scores
+total_score = sum([SCORE[char] for char in badges])
 print(f"Total Score: {total_score}")
